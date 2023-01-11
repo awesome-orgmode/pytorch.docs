@@ -1,0 +1,36 @@
+name: Build PyTorch Docs  # this workflow probably won't work 
+
+on:
+  push:
+    branches:
+      - main # main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up build environment
+      uses: actions/setup-docker@v2
+      with:
+        image: ubuntu:20.04
+      env:
+        DEBIAN_FRONTEND: noninteractive
+
+    - name: Build docs
+      run: |
+        apt update && apt install -y --no-install-recommends git wget p7zip-full build-essential
+        # Prepare the environment using the provided Dockerfile
+        # But not run the command in CMD ["bash"]
+    - name: Build
+      run: |
+        cd pytorch && pip install --no-deps -r docs/requirements.txt && make docs
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: docs
+        path: build/docs
