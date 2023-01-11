@@ -1,4 +1,4 @@
-# PyTorch Offline Documentation
+# PyTorch Offline Documentation 
 
 Offline documentation built from official [Scikit-learn](https://github.com/scikit-learn/scikit-learn), [Matplotlib](https://github.com/matplotlib/matplotlib), [PyTorch](https://github.com/pytorch/pytorch.git) and [torchvision](https://github.com/pytorch/vision.git) release.
 
